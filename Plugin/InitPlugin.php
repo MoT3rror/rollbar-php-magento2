@@ -2,16 +2,22 @@
 
 namespace Rollbar\Magento2\Plugin;
 
+use Magento\Framework\App\DeploymentConfig;
+use Magento\Framework\AppInterface;
+use Rollbar\Rollbar;
+
 class InitPlugin
 {
-    public function beforeLaunch(\Magento\Framework\AppInterface $subject)
+    public function __construct(
+        private DeploymentConfig $deploymentConfig
+    ){}
+    
+    public function beforeLaunch(AppInterface $subject)
     {
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $deploymentConfig = $objectManager->get(\Magento\Framework\App\DeploymentConfig::class);
-        $rollbarConfig = $deploymentConfig->get('rollbar');
+        $rollbarConfig = $this->deploymentConfig->get('rollbar');
 
         if($rollbarConfig) {
-            \Rollbar\Rollbar::init($rollbarConfig);
+            Rollbar::init($rollbarConfig);
         }
     }
 }
