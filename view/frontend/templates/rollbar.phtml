@@ -1,0 +1,13 @@
+<?php
+/** @var \Rollbar\Magento2\Block\Rollbar $block */
+if (! $block->getRollbarConfig()) {
+    return;
+}
+?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Rollbar_Magento2/rollbar": <?= json_encode($block->getRollbarConfig()) ?>
+        }
+    }
+</script>

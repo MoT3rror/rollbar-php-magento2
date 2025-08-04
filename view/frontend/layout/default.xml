@@ -1,0 +1,15 @@
+<page
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd"
+>
+    <body>
+        <referenceContainer name="root">
+            <block
+                class="Rollbar\Magento2\Block\Rollbar"
+                name="rollbar"
+                template="Rollbar_Magento2::rollbar.phtml"
+                before="-"
+            />
+        </referenceContainer>
+    </body>
+</page>
